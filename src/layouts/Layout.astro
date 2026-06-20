@@ -48,6 +48,28 @@ const current = Astro.url.pathname;
   <footer>
     <p>&copy; {new Date().getFullYear()} Ocular. All rights reserved.</p>
   </footer>
+
+  <script define:vars={{ supabaseUrl: import.meta.env.PUBLIC_SUPABASE_URL, supabaseKey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY }}>
+    fetch(`${supabaseUrl}/rest/v1/content?select=page,section,field,value`, {
+      headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` }
+    })
+    .then(r => r.json())
+    .then(rows => {
+      if (!Array.isArray(rows)) return;
+      rows.forEach(row => {
+        const key = `${row.page}.${row.section}.${row.field}`;
+        // Plain text elements
+        document.querySelectorAll(`[data-content="${key}"]`).forEach(el => {
+          el.textContent = row.value;
+        });
+        // HTML elements (headings with \n → <br>)
+        document.querySelectorAll(`[data-content-html="${key}"]`).forEach(el => {
+          el.innerHTML = row.value.replace(/\n/g, '<br />');
+        });
+      });
+    })
+    .catch(() => {});
+  </script>
 </body>
 </html>
 

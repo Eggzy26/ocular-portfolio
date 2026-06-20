@@ -6,8 +6,11 @@ import Layout from '../layouts/Layout.astro';
   <section class="hero section">
     <div class="container">
       <span class="tag">Portfolio</span>
-      <h1>Crafting<br />digital<br /><em>experiences</em></h1>
-      <p class="sub">Designer & creative director focused on brand, identity, and digital product.</p>
+      <h1>
+        <span data-content-html="home.hero.heading">Crafting<br />digital</span><br />
+        <em><span data-content="home.hero.accent">experiences</span></em>
+      </h1>
+      <p class="sub" data-content="home.hero.subtext">Designer & creative director focused on brand, identity, and digital product.</p>
       <div class="cta-row">
         <a href="/work" class="btn btn-accent">View Work</a>
         <a href="/contact" class="btn">Get in Touch</a>
@@ -19,16 +22,16 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="stats-row">
         <div class="stat">
-          <span class="num">8+</span>
-          <span class="label">Years Experience</span>
+          <span class="num" data-content="home.stats.stat1_number">8+</span>
+          <span class="label" data-content="home.stats.stat1_label">Years Experience</span>
         </div>
         <div class="stat">
-          <span class="num">60+</span>
-          <span class="label">Projects Delivered</span>
+          <span class="num" data-content="home.stats.stat2_number">60+</span>
+          <span class="label" data-content="home.stats.stat2_label">Projects Delivered</span>
         </div>
         <div class="stat">
-          <span class="num">30+</span>
-          <span class="label">Happy Clients</span>
+          <span class="num" data-content="home.stats.stat3_number">30+</span>
+          <span class="label" data-content="home.stats.stat3_label">Happy Clients</span>
         </div>
       </div>
     </div>

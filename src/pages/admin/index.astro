@@ -52,7 +52,10 @@ const unread = contacts?.filter(c => !c.read).length ?? 0;
         <span class="divider">/</span>
         <span class="page-title">Admin</span>
       </div>
-      <a href="/admin/logout" class="logout">Sign Out</a>
+      <div style="display:flex;align-items:center;gap:1.5rem;">
+        <a href="/admin/content" class="logout">Edit Content</a>
+        <a href="/admin/logout" class="logout">Sign Out</a>
+      </div>
     </div>
   </header>
 

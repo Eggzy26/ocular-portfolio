@@ -4,21 +4,25 @@ import Layout from '../layouts/Layout.astro';
 
 const services = [
   {
+    key: 'card1',
     title: 'Brand Identity',
     desc: 'Logo, typography, color systems, and brand guidelines that give your business a clear, consistent visual voice.',
     deliverables: ['Logo Suite', 'Color Palette', 'Typography System', 'Brand Guidelines PDF'],
   },
   {
+    key: 'card2',
     title: 'Web Design',
     desc: 'High-converting, beautifully designed websites that reflect your brand and work hard for your business.',
     deliverables: ['UX Strategy', 'UI Design', 'Responsive Layouts', 'Handoff to Dev'],
   },
   {
+    key: 'card3',
     title: 'Creative Direction',
     desc: 'Strategic creative leadership for campaigns, launches, and brand moments that need to make an impact.',
     deliverables: ['Art Direction', 'Campaign Concepts', 'Visual Language', 'Content Direction'],
   },
   {
+    key: 'card4',
     title: 'Design Systems',
     desc: 'Scalable component libraries and design tokens that keep your product consistent as it grows.',
     deliverables: ['Component Library', 'Design Tokens', 'Documentation', 'Figma Handoff'],
@@ -29,16 +33,16 @@ const services = [
   <section class="section">
     <div class="container">
       <span class="tag">Services</span>
-      <h1>What I<br />Offer</h1>
-      <p class="sub">Focused, high-quality design work for brands that want to stand out.</p>
+      <h1 data-content-html="services.hero.heading">What I<br />Offer</h1>
+      <p class="sub" data-content="services.hero.subtext">Focused, high-quality design work for brands that want to stand out.</p>
 
       <div class="services-list">
         {services.map((s, i) => (
           <div class="service-item">
             <span class="num">0{i + 1}</span>
             <div class="service-body">
-              <h2>{s.title}</h2>
-              <p>{s.desc}</p>
+              <h2 data-content={`services.${s.key}.title`}>{s.title}</h2>
+              <p data-content={`services.${s.key}.desc`}>{s.desc}</p>
               <ul>
                 {s.deliverables.map(d => <li>{d}</li>)}
               </ul>
@@ -48,8 +52,8 @@ const services = [
       </div>
 
       <div class="cta-block">
-        <h2>Ready to start?</h2>
-        <p>Tell me about your project and let's figure out how I can help.</p>
+        <h2 data-content="services.cta.heading">Ready to start?</h2>
+        <p data-content="services.cta.subtext">Tell me about your project and let's figure out how I can help.</p>
         <a href="/contact" class="btn btn-accent">Get in Touch</a>
       </div>
     </div>
