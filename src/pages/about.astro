@@ -1,0 +1,72 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="About" description="About me and my design practice">
+  <section class="section">
+    <div class="container">
+      <span class="tag">About</span>
+      <div class="split">
+        <div class="left">
+          <h1>Design is<br />how I think</h1>
+          <p>I'm a designer and creative director based in [City]. I help brands find their voice, build their visual identity, and create digital experiences that resonate.</p>
+          <p>With over 8 years working across brand, product, and digital — I bring a systems-thinking approach to every project, making sure every detail serves the whole.</p>
+          <a href="/contact" class="btn btn-accent" style="margin-top:2rem;">Work Together</a>
+        </div>
+        <div class="right">
+          <div class="photo-placeholder"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="skills-row">
+        <div>
+          <h3>Disciplines</h3>
+          <ul>
+            <li>Brand Identity</li>
+            <li>Visual Design</li>
+            <li>UI / UX</li>
+            <li>Creative Direction</li>
+            <li>Design Systems</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tools</h3>
+          <ul>
+            <li>Figma</li>
+            <li>Adobe Creative Suite</li>
+            <li>Webflow / Framer</li>
+            <li>Notion</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Previously</h3>
+          <ul>
+            <li>Company / Studio Name</li>
+            <li>Agency Name</li>
+            <li>Freelance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 2rem; }
+  .left p { color: var(--muted); margin-top: 1rem; max-width: 420px; }
+  .photo-placeholder { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; height: 480px; }
+
+  .skills-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; border-top: 1px solid var(--border); padding-top: 3rem; }
+  .skills-row h3 { margin-bottom: 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .skills-row ul { list-style: none; }
+  .skills-row li { padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text); }
+
+  @media (max-width: 700px) {
+    .split { grid-template-columns: 1fr; }
+    .skills-row { grid-template-columns: 1fr; }
+  }
+</style>

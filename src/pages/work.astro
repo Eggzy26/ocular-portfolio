@@ -1,0 +1,56 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  { title: 'Steadfast Word', category: 'Brand Strategy · Identity · Product', year: '2024', desc: 'A complete brand operating system built from the ground up — positioning, visual identity, content engine, and product suite.', slug: 'steadfast-word' },
+  { title: 'Project Two', category: 'Web Design', year: '2024', desc: 'Marketing site redesign increasing conversions by 40%.', slug: null },
+  { title: 'Project Three', category: 'Product Design', year: '2023', desc: 'End-to-end UX for a SaaS dashboard.', slug: null },
+  { title: 'Project Four', category: 'Identity', year: '2023', desc: 'Visual identity and brand guidelines.', slug: null },
+  { title: 'Project Five', category: 'Web Design', year: '2022', desc: 'E-commerce experience redesign.', slug: null },
+  { title: 'Project Six', category: 'Branding', year: '2022', desc: 'Logo and brand system for a retail brand.', slug: null },
+];
+---
+<Layout title="Work" description="Selected projects and case studies">
+  <section class="section">
+    <div class="container">
+      <span class="tag">Work</span>
+      <h1>Selected<br />Projects</h1>
+      <p class="sub">A curated collection of brand, digital, and product work.</p>
+
+      <div class="grid">
+        {projects.map(p => (
+          <a href={p.slug ? `/work/${p.slug}.html` : '#'} class={`card${!p.slug ? ' no-link' : ''}`}>
+            <div class="thumb"></div>
+            <div class="info">
+              <div class="meta">
+                <span class="cat">{p.category}</span>
+                <span class="yr">{p.year}</span>
+              </div>
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+              {p.slug && <span class="view">View Case Study →</span>}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sub { color: var(--muted); margin: 1rem 0 3rem; max-width: 400px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+  .card { display: block; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.2s; }
+  .card:hover { border-color: var(--muted); }
+  .card.no-link { cursor: default; }
+  .card.no-link:hover { border-color: var(--border); }
+  .view { display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--highlight); }
+  .thumb { background: var(--surface); height: 240px; }
+  .info { padding: 1.25rem; }
+  .meta { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+  .cat { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--highlight); }
+  .yr { font-size: 0.75rem; color: var(--muted); }
+  .info h3 { margin-bottom: 0.4rem; }
+  .info p { font-size: 0.85rem; color: var(--muted); }
+</style>

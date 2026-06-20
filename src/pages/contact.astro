@@ -1,0 +1,132 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Contact" description="Get in touch to start a project">
+  <section class="section">
+    <div class="container">
+      <span class="tag">Contact</span>
+      <div class="split">
+        <div class="left">
+          <h1>Let's work<br />together</h1>
+          <p>Have a project in mind? I'd love to hear about it. Fill out the form and I'll get back to you within 1–2 business days.</p>
+          <div class="contact-details">
+            <div>
+              <span class="label">Email</span>
+              <span>hello@ocular.design</span>
+            </div>
+            <div>
+              <span class="label">Based in</span>
+              <span>Your City, Country</span>
+            </div>
+            <div>
+              <span class="label">Availability</span>
+              <span>Open to new projects</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="right">
+          <form id="contact-form">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="What's this about?" />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-accent" id="submit-btn">Send Message</button>
+            <p id="form-status" class="status"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { supabase } from '../lib/supabase.ts';
+
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const btn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const status = document.getElementById('form-status') as HTMLParagraphElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    status.textContent = '';
+    status.className = 'status';
+
+    const data = {
+      name: (document.getElementById('name') as HTMLInputElement).value,
+      email: (document.getElementById('email') as HTMLInputElement).value,
+      subject: (document.getElementById('subject') as HTMLInputElement).value,
+      message: (document.getElementById('message') as HTMLTextAreaElement).value,
+    };
+
+    const { error } = await supabase.from('contacts').insert([data]);
+
+    if (error) {
+      status.textContent = 'Something went wrong. Please try again.';
+      status.classList.add('error');
+    } else {
+      status.textContent = 'Message sent! I\'ll be in touch soon.';
+      status.classList.add('success');
+      form.reset();
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+  });
+</script>
+
+<style>
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; margin-top: 2rem; }
+  .left p { color: var(--muted); margin: 1.5rem 0 2.5rem; max-width: 360px; }
+
+  .contact-details { display: flex; flex-direction: column; gap: 1.25rem; }
+  .contact-details > div { display: flex; flex-direction: column; gap: 0.2rem; }
+  .contact-details .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .contact-details span:last-child { font-size: 0.9rem; }
+
+  form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .field { display: flex; flex-direction: column; gap: 0.4rem; }
+  label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+
+  input, textarea {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--muted);
+  }
+
+  input::placeholder, textarea::placeholder { color: var(--muted); }
+
+  .status { font-size: 0.85rem; margin-top: 0.5rem; }
+  .status.success { color: var(--highlight); }
+  .status.error { color: #ff6b6b; }
+
+  @media (max-width: 700px) {
+    .split { grid-template-columns: 1fr; gap: 3rem; }
+  }
+</style>

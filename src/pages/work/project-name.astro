@@ -1,0 +1,246 @@
+---
+export const prerender = true;
+import Layout from '../../layouts/Layout.astro';
+
+const project = {
+  title: 'Project Name',
+  category: 'Branding / Identity',
+  year: '2024',
+  client: 'Client Name',
+  role: 'Creative Director, Designer',
+  duration: '6 weeks',
+  description: 'A short 1–2 sentence overview of what this project was and what you set out to achieve.',
+};
+---
+<Layout title={project.title} description={project.description}>
+
+  <!-- Hero -->
+  <section class="case-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/work">Work</a>
+        <span>→</span>
+        <span>{project.title}</span>
+      </div>
+      <h1>{project.title}</h1>
+      <p class="overview">{project.description}</p>
+
+      <div class="meta-row">
+        <div class="meta-item">
+          <span class="meta-label">Client</span>
+          <span>{project.client}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span>{project.role}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span>{project.category}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Year</span>
+          <span>{project.year}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Duration</span>
+          <span>{project.duration}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cover image -->
+  <section class="cover">
+    <div class="container">
+      <div class="cover-img"></div>
+    </div>
+  </section>
+
+  <!-- Challenge -->
+  <section class="section">
+    <div class="container content-grid">
+      <div class="section-label">
+        <span class="tag">01</span>
+        <h2>The Challenge</h2>
+      </div>
+      <div class="section-body">
+        <p>Describe the problem or opportunity this project addressed. What was broken, missing, or needed to grow? What were the constraints?</p>
+        <p>Keep this focused — one clear problem statement is stronger than a list of issues.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full-width image -->
+  <div class="full-img"></div>
+
+  <!-- Process -->
+  <section class="section">
+    <div class="container content-grid">
+      <div class="section-label">
+        <span class="tag">02</span>
+        <h2>The Process</h2>
+      </div>
+      <div class="section-body">
+        <p>Walk through how you approached the work. Research, strategy, ideation, iteration — whatever shaped the outcome. This is where you show how you think.</p>
+        <div class="process-steps">
+          <div class="step">
+            <span class="step-num">1</span>
+            <div>
+              <h3>Discovery</h3>
+              <p>Research, interviews, competitive audit.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            <div>
+              <h3>Strategy</h3>
+              <p>Positioning, brand territory, creative brief.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">3</span>
+            <div>
+              <h3>Design</h3>
+              <p>Concepts, refinement, system building.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">4</span>
+            <div>
+              <h3>Delivery</h3>
+              <p>Final assets, guidelines, handoff.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image grid -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="img-grid-2">
+        <div class="img-placeholder"></div>
+        <div class="img-placeholder"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section class="section">
+    <div class="container content-grid">
+      <div class="section-label">
+        <span class="tag">03</span>
+        <h2>The Solution</h2>
+      </div>
+      <div class="section-body">
+        <p>Describe what you made and why it works. Focus on decisions — why this direction over another, what principles guided the design.</p>
+        <p>Be specific. "Clean and modern" tells no one anything. "We anchored the identity in a single symbol that works at 16px and 16 feet" does.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-image grid -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="img-grid-3">
+        <div class="img-placeholder"></div>
+        <div class="img-placeholder"></div>
+        <div class="img-placeholder"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section results-section">
+    <div class="container">
+      <span class="tag">04 — Results</span>
+      <div class="results-grid">
+        <div class="result">
+          <span class="result-num">+40%</span>
+          <span class="result-label">Conversion rate increase</span>
+        </div>
+        <div class="result">
+          <span class="result-num">3×</span>
+          <span class="result-label">Social engagement</span>
+        </div>
+        <div class="result">
+          <span class="result-num">2wks</span>
+          <span class="result-label">Delivered ahead of schedule</span>
+        </div>
+      </div>
+      <blockquote>
+        <p>"A quote from the client about the impact of the work and what it meant to their business."</p>
+        <cite>— Client Name, Title, Company</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Next project -->
+  <section class="next-project">
+    <div class="container">
+      <span class="next-label">Next Project</span>
+      <a href="/work/another-project" class="next-link">
+        <h2>Another Project Name →</h2>
+      </a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .case-hero { padding: 5rem 0 3rem; }
+  .breadcrumb { display: flex; gap: 0.5rem; font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--text); }
+  .case-hero h1 { margin-bottom: 1.25rem; }
+  .overview { color: var(--muted); max-width: 560px; font-size: 1.05rem; line-height: 1.7; margin-bottom: 3rem; }
+
+  .meta-row { display: flex; flex-wrap: wrap; gap: 2.5rem; border-top: 1px solid var(--border); padding-top: 2rem; }
+  .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+  .meta-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .meta-item span:last-child { font-size: 0.9rem; }
+
+  .cover { padding: 2rem 0 4rem; }
+  .cover-img { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; height: 520px; }
+
+  .full-img { background: var(--surface); height: 480px; margin: 0 0 4rem; }
+
+  .content-grid { display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; }
+  .section-label h2 { margin-top: 0.75rem; font-size: 1.5rem; }
+  .section-body p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+  .section-body p:last-child { margin-bottom: 0; }
+
+  .process-steps { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .step { display: flex; gap: 1.25rem; align-items: start; }
+  .step-num { font-size: 0.7rem; color: var(--highlight); border: 1px solid var(--highlight); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .step h3 { font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .step p { color: var(--muted); font-size: 0.85rem; margin: 0; }
+
+  .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  .img-placeholder { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; height: 280px; }
+
+  .results-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 2.5rem 0 3rem; }
+  .result { display: flex; flex-direction: column; gap: 0.4rem; }
+  .result-num { font-size: 3rem; font-weight: 300; color: var(--highlight); }
+  .result-label { font-size: 0.8rem; color: var(--muted); }
+
+  blockquote { border-left: 2px solid var(--highlight); padding-left: 1.5rem; max-width: 600px; }
+  blockquote p { color: var(--text); font-size: 1.05rem; line-height: 1.7; font-style: italic; margin-bottom: 0.75rem; }
+  cite { font-size: 0.8rem; color: var(--muted); font-style: normal; }
+
+  .next-project { padding: 5rem 0; border-top: 1px solid var(--border); }
+  .next-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); display: block; margin-bottom: 1rem; }
+  .next-link h2 { font-size: clamp(1.5rem, 4vw, 3rem); transition: color 0.2s; }
+  .next-link:hover h2 { color: var(--highlight); }
+
+  @media (max-width: 768px) {
+    .content-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .results-grid { grid-template-columns: 1fr; }
+    .img-grid-2, .img-grid-3 { grid-template-columns: 1fr; }
+    .meta-row { gap: 1.5rem; }
+  }
+</style>

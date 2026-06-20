@@ -1,0 +1,52 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+
+const posts = [
+  { title: 'The Art of Visual Hierarchy', date: 'June 10, 2026', category: 'Design', excerpt: 'How arranging elements with intention guides the eye and communicates meaning before a single word is read.' },
+  { title: 'Why Brand Consistency Matters More Than Brand Perfection', date: 'May 22, 2026', category: 'Branding', excerpt: 'Brands that show up consistently — even imperfectly — build more trust than those chasing flawless execution.' },
+  { title: 'Building a Design System from Scratch', date: 'April 15, 2026', category: 'Process', excerpt: 'A practical walkthrough of how I approach building scalable component libraries for growing products.' },
+];
+---
+<Layout title="Blog" description="Thoughts on design, branding, and creative work">
+  <section class="section">
+    <div class="container">
+      <span class="tag">Blog</span>
+      <h1>Thoughts &<br />Writing</h1>
+      <p class="sub">On design, branding, creative process, and the occasional tangent.</p>
+
+      <div class="posts">
+        {posts.map(p => (
+          <article class="post">
+            <div class="post-meta">
+              <span class="cat">{p.category}</span>
+              <span class="date">{p.date}</span>
+            </div>
+            <h2>{p.title}</h2>
+            <p>{p.excerpt}</p>
+            <a href="#" class="read-more">Read More →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sub { color: var(--muted); margin: 1rem 0 4rem; max-width: 400px; }
+  .posts { display: flex; flex-direction: column; }
+  .post {
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 680px;
+  }
+  .post-meta { display: flex; gap: 1.5rem; margin-bottom: 1rem; }
+  .cat { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--highlight); }
+  .date { font-size: 0.75rem; color: var(--muted); }
+  .post h2 { font-size: 1.4rem; font-weight: 400; margin-bottom: 0.75rem; }
+  .post p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.25rem; }
+  .read-more { font-size: 0.8rem; color: var(--text); letter-spacing: 0.05em; transition: color 0.2s; }
+  .read-more:hover { color: var(--highlight); }
+</style>

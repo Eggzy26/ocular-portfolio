@@ -1,0 +1,90 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    title: 'Brand Identity',
+    desc: 'Logo, typography, color systems, and brand guidelines that give your business a clear, consistent visual voice.',
+    deliverables: ['Logo Suite', 'Color Palette', 'Typography System', 'Brand Guidelines PDF'],
+  },
+  {
+    title: 'Web Design',
+    desc: 'High-converting, beautifully designed websites that reflect your brand and work hard for your business.',
+    deliverables: ['UX Strategy', 'UI Design', 'Responsive Layouts', 'Handoff to Dev'],
+  },
+  {
+    title: 'Creative Direction',
+    desc: 'Strategic creative leadership for campaigns, launches, and brand moments that need to make an impact.',
+    deliverables: ['Art Direction', 'Campaign Concepts', 'Visual Language', 'Content Direction'],
+  },
+  {
+    title: 'Design Systems',
+    desc: 'Scalable component libraries and design tokens that keep your product consistent as it grows.',
+    deliverables: ['Component Library', 'Design Tokens', 'Documentation', 'Figma Handoff'],
+  },
+];
+---
+<Layout title="Services" description="Design services offered">
+  <section class="section">
+    <div class="container">
+      <span class="tag">Services</span>
+      <h1>What I<br />Offer</h1>
+      <p class="sub">Focused, high-quality design work for brands that want to stand out.</p>
+
+      <div class="services-list">
+        {services.map((s, i) => (
+          <div class="service-item">
+            <span class="num">0{i + 1}</span>
+            <div class="service-body">
+              <h2>{s.title}</h2>
+              <p>{s.desc}</p>
+              <ul>
+                {s.deliverables.map(d => <li>{d}</li>)}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="cta-block">
+        <h2>Ready to start?</h2>
+        <p>Tell me about your project and let's figure out how I can help.</p>
+        <a href="/contact" class="btn btn-accent">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sub { color: var(--muted); margin: 1rem 0 4rem; max-width: 400px; }
+  .services-list { display: flex; flex-direction: column; gap: 0; }
+  .service-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+    align-items: start;
+  }
+  .num { font-size: 0.75rem; color: var(--muted); padding-top: 0.5rem; }
+  .service-body h2 { margin-bottom: 0.75rem; }
+  .service-body p { color: var(--muted); max-width: 560px; margin-bottom: 1.25rem; }
+  .service-body ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .service-body li {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+  }
+
+  .cta-block {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 4rem;
+    text-align: center;
+    margin-top: 4rem;
+  }
+  .cta-block p { color: var(--muted); margin: 1rem 0 2rem; }
+</style>
