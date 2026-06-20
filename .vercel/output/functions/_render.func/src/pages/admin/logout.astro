@@ -1,0 +1,9 @@
+---
+export const prerender = false;
+
+const headers = new Headers({
+  'Set-Cookie': `admin_session=; HttpOnly; Path=/admin; Max-Age=0; SameSite=Lax`,
+  Location: '/admin/login',
+});
+return new Response(null, { status: 302, headers });
+---

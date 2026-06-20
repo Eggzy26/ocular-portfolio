@@ -1,0 +1,92 @@
+---
+export const prerender = false;
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const password = form.get('password');
+
+  if (password === import.meta.env.ADMIN_PASSWORD) {
+    const headers = new Headers({
+      'Set-Cookie': `admin_session=authenticated; HttpOnly; Path=/admin; Max-Age=86400; SameSite=Lax`,
+      Location: '/admin',
+    });
+    return new Response(null, { status: 302, headers });
+  } else {
+    return new Response(null, {
+      status: 302,
+      headers: { Location: '/admin/login?error=1' },
+    });
+  }
+}
+
+const error = Astro.url.searchParams.get('error');
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | Ocular</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <span class="logo">Ocular</span>
+      <h1>Admin</h1>
+      <p>Enter your password to access the dashboard.</p>
+      {error && <p class="error">Incorrect password. Try again.</p>}
+      <form method="POST">
+        <input type="password" name="password" placeholder="Password" autofocus required />
+        <button type="submit">Sign In</button>
+      </form>
+      <a href="/" class="back">← Back to site</a>
+    </div>
+  </div>
+</body>
+</html>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0a;
+    color: #e8e8e8;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wrap { width: 100%; max-width: 380px; padding: 2rem; }
+  .logo { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: #c8f04a; }
+  h1 { font-size: 1.8rem; font-weight: 300; margin: 0.75rem 0 0.4rem; }
+  p { color: #666; font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .error { color: #ff6b6b; margin-bottom: 1rem; }
+  form { display: flex; flex-direction: column; gap: 0.75rem; }
+  input {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    color: #e8e8e8;
+    font-family: inherit;
+    font-size: 0.9rem;
+  }
+  input:focus { outline: none; border-color: #444; }
+  button {
+    background: #c8f04a;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  button:hover { opacity: 0.85; }
+  .back { display: block; text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #444; text-decoration: none; transition: color 0.2s; }
+  .back:hover { color: #e8e8e8; }
+</style>
